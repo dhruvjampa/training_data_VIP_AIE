@@ -1,5 +1,56 @@
 {
     "class": "ECE 20875",
     "homework_number": 8,
-    "sections": {}
+    "sections": {
+        "homework 8": {
+            "content": "\n\n",
+            "subsections": {
+                "linear regression": {
+                    "content": "\n\nThis homework covers several regression topics and will give you practice with the numpy and sklearn libraries in Python. It has both a coding and a writeup component.\n\n\n\n"
+                },
+                "goals": {
+                    "content": "\n\nIn this homework you will:\n\n\n\n1. Build linear regression models to serve as predictors from input data.\n\n2. Parse input data into feature matrices and target variables.\n\n3. Use cross validation to find the best regularization parameter for a dataset.\n\n\n\n"
+                },
+                "background": {
+                    "content": "\n\nBefore attempting the homework, please review the notes on linear regression. In addition to what is covered there, the following background may be useful.\n\n\n\n",
+                    "subsections": {
+                        "csv processing in python": {
+                            "content": "\n\nLike `.txt`, `.csv` (comma-separated values) is a useful file format for storing data. In a CSV file, each line is a data record, and different fields of the record are separated by commas, forming a two-dimensional data table (records by fields). Typically, the first row and first column are headings for the fields and records.\n\n\n\nPython’s **pandas** module helps manage two-dimensional data tables.\n\n\n\nWe can read a CSV as follows:\n\n\n\n```python\n\nimport pandas as pd\n\n\n\ndata = pd.read_csv('data.csv')\n\n```\n\n\n\nTo see a small snippet of the data, including the headers:\n\n\n\n```python\n\ndata.head()\n\n```\n\n\n\nIf we want to use columns `'A'`, `'B'`, `'D'` as features and `'C'` as the target variable:\n\n\n\n```python\n\nX = data[['A', 'B', 'D']]\n\ny = data[['C']]\n\n```\n\n\n\nMore details on Pandas can be found here:\n\n\n\nhttps://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html\n\n\n\n"
+                        },
+                        "matrix algebra in python": {
+                            "content": "\n\nPython offers computationally efficient functions for linear algebra operations through the **numpy** library.\n\n\n\nSuppose `A` is a list of `m` lists, each having `n` numerical items. Numpy will treat `A` as an `m × n` matrix.\n\n\n\nTo transpose `A`:\n\n\n\n```python\n\nimport numpy as np\n\n\n\nAT = A.T\n\n```\n\n\n\nIf `B` is another `m × n` matrix, we can compute:\n\n\n\n```python\n\nAB = A.T @ B\n\n```\n\n\n\nIf `n = 1`, meaning `A` and `B` are vectors, this operation becomes the **dot product**.\n\n\n\nIf `A` is a square `n × n` matrix, we can compute its inverse:\n\n\n\n```python\n\nAinv = np.linalg.inv(A)\n\n```\n\n\n\nMore matrix operations:\n\n\n\nhttps://docs.scipy.org/doc/numpy/reference/routines.linalg.html\n\n\n\n"
+                        },
+                        "linear regression in python": {
+                            "content": "\n\nPython offers several machine learning models through the **sklearn** library.\n\n\n\nExample linear regression model:\n\n\n\n```python\n\nfrom sklearn.linear_model import LinearRegression\n\n\n\nmodel_lin = LinearRegression(fit_intercept=True)\n\nmodel_lin.fit(X, y)\n\n```\n\n\n\nPredicting new values:\n\n\n\n```python\n\nyn = model_lin.predict(Xn)\n\n```\n\n\n\nViewing model parameters:\n\n\n\n```python\n\nmodel_lin.get_params()\n\n```\n\n\n\nRidge regression example:\n\n\n\n```python\n\nfrom sklearn.linear_model import Ridge\n\n\n\nmodel_ridge = Ridge(alpha=0.2, fit_intercept=True)\n\nmodel_ridge.fit(X, y)\n\n```\n\n\n\nMore regression models:\n\n\n\nhttps://scikit-learn.org/stable/supervised_learning.html#supervised-learning\n\n\n\n"
+                        }
+                    }
+                },
+                "instructions": {
+                    "content": "\n\n",
+                    "subsections": {
+                        "setting up your repository": {
+                            "content": "\n\nClick the link on Piazza to set up your repository for Homework 8, then clone it.\n\n\n\nYour repository should contain the following files:\n\n\n\n1. `polyfit.py`, a starter file for Problem 1\n\n2. `poly.txt`, a data file for Problem 1\n\n3. `regularize-cv.py`, a starter file for Problem 2\n\n4. `diamonds.csv`, a data file for Problem 2\n\n\n\n"
+                        },
+                        "problem 1: polynomial regression": {
+                            "content": "\n\nA common misconception is that linear regression can only be used to fit a linear relationship. We can fit more complex relationships by defining new features.\n\n\n\nA degree `d` polynomial is:\n\n\n\nŷ_d(x) = a_d x^d + a_(d−1)x^(d−1) + ... + a₁x + b\n\n\n\nThe parameters are:\n\n\n\nβ = (a_d, ..., a₁, b)^T\n\n\n\nExamples:\n\n- d = 1 → line\n\n- d = 2 → quadratic\n\n- d = 3 → cubic\n\n\n\nIn this problem you will:\n\n\n\n1. Complete the functions in `polyfit.py`.\n\n\n\n   This includes:\n\n   - parsing the input data\n\n   - creating the feature matrix\n\n   - solving the least squares equations\n\n\n\n2. Use your code to fit polynomials with degrees:\n\n\n\n   d = 1, 2, 3, 4, 5\n\n\n\n   using the dataset `poly.txt`.\n\n\n\n3. Use `matplotlib.pyplot` to visualize:\n\n\n\n   - the dataset\n\n   - the fitted curves\n\n\n\n   Plot `y`, `ŷ₁(x)`, `ŷ₂(x)`, `ŷ₃(x)`, `ŷ₄(x)`, `ŷ₅(x)` on the same graph.\n\n\n\n   Make sure to:\n\n   - use different colors\n\n   - include a legend\n\n\n\n   Then answer: **What degree polynomial seems to best fit the data? Explain.**\n\n\n\n4. If a new datapoint is measured at:\n\n\n\n   x = 2\n\n\n\n   what is the predicted value `ŷ` using the best fitting polynomial?\n\n\n\nNote: **You are not permitted to use sklearn for this problem.**  \n\nYou must use **numpy matrix operations** to solve the least squares equations.\n\n\n\nOnce completed, running the provided test case should output (rounded to 6 digits):\n\n\n\n```\n\n[[7.00158, 9.30386, -239.334],\n\n [0.00598796, 0.755218, 0.234560, 1.17636, -175.880]]\n\n```\n\n\n\n"
+                        },
+                        "problem 2: regularized regression": {
+                            "content": "\n\nRegularization techniques like **ridge regression** introduce a parameter `λ`.\n\n\n\nTo determine the best value of `λ`, we use **cross validation**.\n\n\n\nYou will use the `diamonds.csv` dataset containing roughly **54,000 diamonds** with attributes:\n\n\n\n- carat\n\n- cut\n\n- color\n\n- clarity\n\n- depth\n\n- table\n\n- x\n\n- y\n\n- z\n\n- price\n\n\n\nDataset source:\n\n\n\nhttp://vincentarelbundock.github.io/Rdatasets/datasets.html\n\n\n\n",
+                            "subsections": {
+                                "tasks": {
+                                    "content": "\n\n1. Complete `normalize_train`\n\n\n\n   Input: `X_train`\n\n\n\n   Output:\n\n   - normalized feature matrix\n\n   - column means\n\n   - column standard deviations\n\n\n\n   Each column should have:\n\n\n\n   mean = 0  \n\n   std = 1\n\n\n\n2. Complete `normalize_test`\n\n\n\n   Input:\n\n\n\n   - `X_test`\n\n   - training means\n\n   - training standard deviations\n\n\n\n3. Define the lambda range:\n\n\n\n   10^-1.00, 10^-0.97, 10^-0.94, ..., 10^1.97, 10^2.00\n\n\n\n   Use:\n\n\n\n```python\n\nnp.logspace()\n\n```\n\n\n\n   with `num = 101`.\n\n\n\n4. Complete `train_model`\n\n\n\n   Train a ridge regression model with parameter `λ = l`.\n\n\n\n   Use:\n\n\n\n```python\n\nsklearn.linear_model.Ridge\n\n```\n\n\n\n5. Complete `error()`\n\n\n\n   Compute **Mean Squared Error (MSE)**:\n\n\n\n   MSE = average((y_pred − y_true)²)\n\n\n\n6. In `main`, plot:\n\n\n\n   **MSE vs λ**\n\n\n\n   Include:\n\n   - title\n\n   - axis labels\n\n\n\n   Determine the **best λ and best model**.\n\n\n\n7. Write the final regression equation:\n\n\n\n   ŷ(x) = a₁x₁ + a₂x₂ + ... + a₉x₉ + b\n\n\n\n   Using the fitted model, predict the price for a diamond with:\n\n\n\n   - 0.25 carat\n\n   - cut = 3\n\n   - color = 3\n\n   - clarity = 5\n\n   - depth = 60\n\n   - table = 55\n\n   - x = 4\n\n   - y = 3\n\n   - z = 2\n\n\n\nOnce completed, if you test with:\n\n\n\n```\n\nlambda = [1, 100]\n\n```\n\n\n\nyou should see:\n\n\n\n```\n\nBest lambda tested is 1, which yields an MSE of 1812351.1908771885\n\n```\n\n\n\n"
+                                }
+                            }
+                        }
+                    }
+                },
+                "what to submit": {
+                    "content": "\n\nFor each problem submit:\n\n\n\n1. Your completed starter code\n\n2. A writeup as a separate PDF\n\n\n\nFiles to submit:\n\n\n\n- `polyfit.py`\n\n- `problem1_writeup.pdf`\n\n- `regularize-cv.py`\n\n- `problem2_writeup.pdf`\n\n\n\n"
+                },
+                "submitting your code": {
+                    "content": "\n\nPush your completed files to your repository before the deadline.\n\n\n\nVerify that the files appear correctly on GitHub.\n"
+                }
+            }
+        }
+    }
 }
