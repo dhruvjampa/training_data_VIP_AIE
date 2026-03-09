@@ -1,0 +1,143 @@
+{
+    "document_type": "lecture_slides",
+    "course": "ECE 20875",
+    "lecture_title": "hypothesis",
+    "source_file": "hypothesis.pdf",
+    "slides": [
+        {
+            "slide_number": 1,
+            "title": "ECE 20875",
+            "content": "Python for Data Science\nconfidence intervals and\nhypothesis testing\nQiang Qiu, Murat Kocaoglu, and Anuran Makur\n(Adapted from material developed by Profs. Milind Kulkarni,\nStanley Chan, Chris Brinton, David Inouye, Qiang Qiu)"
+        },
+        {
+            "slide_number": 2,
+            "title": "sampling distribution",
+            "content": "• Recall that by the central limit\ntheorem, sample means\napproach a normal distribution\n• Can we use this to draw\nconclusions about our data?\n0\n4500\n9000\n13500\n18000\nmeans\nEach data point is the 𝑥of one experiment"
+        },
+        {
+            "slide_number": 3,
+            "title": "asking questions about data",
+            "content": "• Suppose a factory claims to produce widgets with an average\nweight of 100g and a standard deviation of 22g\n• We receive a new shipment of widgets which seem off, and\nwe want to see whether the factory has shifted\n• Form two hypotheses:\n• Null hypothesis (𝐻!): The factory is producing according\nto specification, i.e., 𝜇= 100𝑔.\n• Alternative hypothesis (𝐻!): The factory is not producing\naccording to specification, i.e., 𝜇≠100𝑔.\n• Suppose we weigh 100 of the new widgets (i.e., sample 𝑛\n= 100 widgets) and find their average weight is 𝑥= 95𝑔\n• What can we conclude?"
+        },
+        {
+            "slide_number": 4,
+            "title": "asking questions about data",
+            "content": "• Are the widgets in spec?\n• Not as simple as it seems!\n• We have picked one sample of\nwidgets, but it could just be a\nbad sample!\n• Can we use our sampling\ndistribution to help?"
+        },
+        {
+            "slide_number": 5,
+            "title": "hypothesis testing",
+            "content": "• Suppose the null hypothesis is true (new widgets\nare from the same distribution as the original\nwidgets)\n• Then the sampling distribution should have its\nmean at 𝜇= 100g\n• And the sampling distribution should have a\nstandard deviation of:\n𝑆𝐸≜𝜎\" = #\n$ ≈%%\n&! = 2.2g\n• This is called the standard error (SE)\n• Remember, 𝜎is from the population, which we\nsometimes have to estimate with 𝑠(from the\nsample)\n𝒩(100,2.2)"
+        },
+        {
+            "slide_number": 6,
+            "title": "hypothesis testing",
+            "content": "• Remember properties of normal\ndistribution:\n• ~68% of points within one σ of\nµ\n• ~95% of points within two σ of\nµ\n• ~99.7% of points within three\nσ of µ\n𝒩(100,2.2)"
+        },
+        {
+            "slide_number": 7,
+            "title": "hypothesis testing",
+            "content": "• Remember properties of normal\ndistribution:\n• ~68% of points within one σ of\nµ\n• ~95% of points within two σ of\nµ\n• ~99.7% of points within three\nσ of µ\n• 95g is between 2 and 3 𝜎, of 𝜇\n• So what about our sample 𝑥of\n95g?\n• Very unlikely for it to have\ncome from this distribution!"
+        },
+        {
+            "slide_number": 8,
+            "title": "z-test",
+            "content": "• The statistical z-test\n• Reasoning about 𝜇\n• Applicable when we know 𝜎or if 𝑛is large enough (if we don’t know σ and 𝑛is large\nenough, we can estimate with s)\n• Can construct sampling distribution assuming null hypothesis is true\n• Set a significance level 𝛼for the test\n• Fraction of distribution in each “tail” considered anomalous is ⁄\n𝛼2 (if two-sided test)\n• See whether sample 𝑥falls in that tail\n• If so, reject null hypothesis 𝐻\" in favor of alternative 𝐻!; otherwise, do not reject (but this\ndoes not prove that 𝐻\" is true)"
+        },
+        {
+            "slide_number": 9,
+            "title": "z-test",
+            "content": "• Set a significance level 𝛼for the test\n• Fraction of distribution considered\nanomalous is ⁄\n𝛼2 in each “tail” (if two-\nsided)\n• See whether sample 𝑥falls in that tail\n• If so, reject null hypothesis 𝐻. in favor of\nalternative 𝐻\"; otherwise, do not reject (but\nthis does not prove that 𝐻. is true)\nSignificance level: 𝛼= 0.05\nIn this case, reject 𝐻.\n𝑥\n0.025\n0.025"
+        },
+        {
+            "slide_number": 10,
+            "title": "p-value for z-test",
+            "content": "• We can formalize this logic by calculating\nthe p-value\n• Place sample 𝑥on distribution\n• Ask what fraction of distribution is farther\nfrom the mean 𝜇than the sample 𝑥\n• This is your p-value, which is compared to\nthe significance level 𝛼:\n• Usually ask for 𝛼= 0.05 or 0.01 (i.e.,\nso that 𝑝≤0.05,0.01 for significance)\n• Sometimes 𝛼= 0.1 is OK\np-value\n𝑥\n𝒩(𝜇, 𝜎!/𝑛)"
+        },
+        {
+            "slide_number": 11,
+            "title": "procedure",
+            "content": "• Compute sample mean 𝑥\n• Compute standard deviation of sampling\ndistribution (standard error)\n𝑆𝐸=\n#\n$\n• Compute z-score\n𝑧= %&'\n()\n• Normalizing the sample to the standard\nnormal distribution 𝒩(0,1)\n• Compute p-value from z-score\np-value\n𝑧\n0\n𝒩(0,1)"
+        },
+        {
+            "slide_number": 12,
+            "title": "computing p-value from z-score",
+            "content": "• One way: look up in a standard table\n• In Python:\nimport scipy.stats as stats\n# compute z = (x - mu) / SE\np = 2 * stats.norm.cdf(-abs(z))\n• Why -abs(z)? cdf considers left of the z point, so\nif z is positive, we want to reference -z\np-value\n−|𝑧|\n0\n𝒩(0,1)\n|𝑧|"
+        },
+        {
+            "slide_number": 13,
+            "title": "overview of z-test",
+            "content": "• Assumptions needed for statistical test\n• Null hypothesis 𝐻%\n• Alternative hypothesis 𝐻&\n• A statistical significance level 𝛼\n• Equivalent questions (if yes, then reject null hypothesis)\n• Is the sample mean, 𝑥, in tail defined by 𝛼of the sampling\ndistribution≈𝒩(𝜇!, 𝜎!\n\")?\n• Is the z-score, 𝑧=\n&'(!\n)! =\n&'(\n*+ , in the tail defined by 𝛼of a\nstandard normal 𝒩(0,1)?\n• Is the p-value, 𝑝= 2𝐹𝒩(%,/)(−|𝑧|), less than 𝛼?\nSignificance level: 𝛼= 0.05\n𝑥\n0.025\n0.025\np-value\n𝑧\n0\n𝒩(0,1)\n𝒩(0,1)\n𝑝\n𝑧⁄\n\" #\n−𝑧⁄\n\" #\n𝒩(𝜇!, 𝜎!\n\")"
+        },
+        {
+            "slide_number": 14,
+            "title": "back to our original example",
+            "content": "• 𝜇= 100, 𝜎= 22\n𝑥= 95, 𝑛= 100\n• So we calculate:\n𝑧= 𝑥−𝜇\n⁄\n𝜎\n𝑛= 95 −100\n⁄\n22\n100\n= −2.273\n𝑝= 2 ⋅𝐹(𝑧|0,1) = 0.023\n• Conclusion:\n• Significant at 𝛼= 0.1,0.05 (reject 𝐻\")\n• Not significant at 𝛼= 0.01 (cannot reject 𝐻\")\np-value = 0.023\n−2.273\n0\n𝒩(𝑧|0,1)\n2.273"
+        },
+        {
+            "slide_number": 15,
+            "title": "comparing two means",
+            "content": "• What if you have two populations, and you want to know\nwhether their means are statistically different?\n• Sample 1: Sample size 𝑛%, from pop. mean 𝜇&, variance 𝜎%\n1\n• Sample 2: Sample size 𝑛&, from pop. mean 𝜇/, variance 𝜎/\n1\n• Hypotheses\n• 𝐻%: The means are the same, i.e., 𝜇& = 𝜇'\n• 𝐻/: The means are different, i.e., 𝜇& ≠𝜇'\n• Can use two-sample z-test\n• Under null hypothesis, sampling distribution of difference\nbetween two means has:\n𝜇= 𝜇& −𝜇' = 0, 𝜎=\n($%\n)$ +\n(&%\n)&\n• Test point is 𝑥= 𝑥$\n−𝑥%\n• z-score is (𝑥−𝜇)/𝜎\n𝑥\n𝒩(𝜇, 𝜎!)\n𝜇= 0"
+        },
+        {
+            "slide_number": 16,
+            "title": "confidence intervals",
+            "content": "• We see these a lot: Ranges above and\nbelow values on a graph\n• What do they mean?\n• Surprisingly tricky question to answer\n50\n56\n62\n68\n74\n80\nA\nB\nC"
+        },
+        {
+            "slide_number": 17,
+            "title": "intuition of confidence intervals",
+            "content": "• A confidence interval is a range around the mean which says\nsomething about how “good” your estimation procedure is\n• How “good” is your choice of number of samples, given the\nvariance in the population\n• Interpretation of a (95%) confidence interval:\n• if I were to repeat the experiment a large number of times, 95\npercent of confidence intervals would contain the population\nmean\n• before I run the experiment, there is a 95 percent chance that the\npopulation mean will fall within the computed confidence interval\n• if the population mean is inside the confidence interval, it would\nnot be statistically significant (informally, you wouldn’t be\nsurprised!)\n50\n56\n62\n68\n74\n80\nA\nB\nC"
+        },
+        {
+            "slide_number": 18,
+            "title": "the first interpretation",
+            "content": "• If I were to repeat the experiment a large number of times, 95 percent of\nconfidence intervals would contain the population mean\n• In the diagram below, each vertical bar is one confidence interval\ncalculated for one experiment\n• For a 95% confidence interval, we expect 95% of them will include 𝜇\nsource: NYW-confidence-interval.svg\nWikipedia user Tsyplakov"
+        },
+        {
+            "slide_number": 19,
+            "title": "confidence intervals more formally",
+            "content": "• If the population parameter is outside the c%\nconfidence interval, then an event occurred that had\na probability of less than (100 −𝑐)%of happening\n• Note that we are setting 𝑐ahead of time (unlike with\nhypothesis testing, where we figure out how\nlikely/unlikely something is after the fact)\n• Wide confidence interval: The variance of your data\nis high (and/or your sample size is small), so we\nneed a wide interval to make the above statement\ntrue.\n• Narrow confidence interval: The variance of your\ndata is small (and/or your sample size is large), so\nwe don’t need a wide interval to make the above\nstatement true."
+        },
+        {
+            "slide_number": 20,
+            "title": "computing confidence intervals",
+            "content": "• Conceptually related to z-tests, but the perspective is reversed\n• For what sampling distributions (centered at the population\nmean), would our sample mean NOT be surprising?\n• Note: Our confidence interval is centered around the sample\nmean (instead of the hypothesized population mean)\n• Remember definition of z-score:\n𝑧= '()\n⁄\n#\n$\n• And p-value:\np = 2 * sp.stats.norm.cdf(-abs(z))\n• If 𝑐is the desired confidence level (here in decimal form), what\n𝑧do we need such that 𝑝≤(1 −𝑐)?\nExtreme values of 𝜇such that 𝑥would be unsurprising\nPossible values of 𝜇such that 𝑥would be unsurprising"
+        },
+        {
+            "slide_number": 21,
+            "title": "• Call this 𝑧,",
+            "content": "• Compute in Python as follows:\nz_c = stats.norm.ppf(1 - (1 - c)/2)\n• While norm.cdf goes from z-score to probability,\nnorm.ppf goes from probability to z-score\n• Now we can answer the question: What range of 𝜇would\nbe “unsurprising” at 𝑐% confidence level?\n𝑧\" = | 𝑥−𝜇\n⁄\n𝜎\n𝑛| →𝜇∈𝑥−𝑧\" ⋅𝜎\n𝑛, 𝑥+ 𝑧\" ⋅𝜎\n𝑛\n= (𝑙\", 𝑢\")\n• This is your 𝑐% confidence interval\ncomputing confidence intervals\n𝑧\"\n1 −1 −𝑐\n2\n𝑥\n𝑙\"\n𝑢'\n𝑙*\n𝑢'\n𝑙\"\n𝑢'\nincreasing\n𝑐"
+        },
+        {
+            "slide_number": 22,
+            "title": "95g",
+            "content": "back to our original example\n• Let’s calculate 90%, 95%, and 99% confidence intervals for 𝜇\n• Recall that our sample had\n𝑥= 95𝑔, 𝜎= 22𝑔, 𝑛= 100\n• Thus, the confidence intervals are:\n𝜇∈95 −𝜎\n𝑛⋅𝑧#, 95 + 𝜎\n𝑛⋅𝑧#\n= 95 −2.2 ⋅𝑧#, 95 + 2.2 ⋅𝑧#\n• For 90%, 95%, 99%, 𝑧# = 1.645,1.960,2.576. Thus,\n90%: (91.38,98.62)\n95%: (90.69,99.31)\n99%: (89.33,100.67)\nHow would we make the intervals narrower\nfor the same levels of confidence?"
+        },
+        {
+            "slide_number": 23,
+            "title": "we’ve been fudging",
+            "content": "• Recall that to use the 𝑧-distribution, we\nmust either know 𝜎or have large\nenough 𝑛\n• The student’s t-distribution and t-test\nis used when the normal approximation\ndoes not hold:\n• i.e., when we don’t know 𝜎(which we\nusually do not) and when 𝑛< 30\n• Can use this to reason about 𝜇,\nincluding building confidence intervals\nand conducting hypothesis tests"
+        },
+        {
+            "slide_number": 24,
+            "title": "student’s t-distribution",
+            "content": "• Similar to the standard 𝒩(0,1) normal distribution\n(density shown to the right)\n• Symmetric about mean\n• Bell curve shaped\n• But has fatter tails, i.e., more weight of the distribution\naway from the mean\n• Accounts for outliers better\n• Parameter of the distribution is the degrees of freedom\n𝑣\n• 𝑣= 𝑛−1: One less than the number of samples\n• Looks more and more like the standard normal as 𝑛→\n∞\n𝑓!(𝑥)"
+        },
+        {
+            "slide_number": 25,
+            "title": "t-test and confidence intervals",
+            "content": "• Works the same as the 𝑧-test, except\n• use 𝑠instead of 𝜎\n• compare to the 𝑡-distribution\n• Computing the test statistic:\n• First get the standard deviation of the sample:\n𝑠=\n1\n𝑛−1 ∑\n./&\n$\n(𝑥. −𝑥)%\n• Then we get the “𝑡-score”:\n𝑡= 𝑥−𝜇\n⁄\n𝑠\n𝑛\nCompare to the\nformula for z\n𝑓!(𝑥)\n• Then we get the 𝑝-value:\np = 2 * stats.t.cdf(-abs(t), df)\n• And for confidence intervals, we find the 𝑡-\nscore corresponding to 𝑐:\nt_c = stats.t.ppf(1 - (1 - c)/2, df)"
+        },
+        {
+            "slide_number": 26,
+            "title": "one-sided tests",
+            "content": "• Sometimes we are only interested in values\ndeparting from the mean in one direction\n• This is a one-sided or one-tailed test\n• For example, suppose we want to assess\nwhether our widgets are being produced at\na significantly higher weight:\n• 𝐻0: 𝜇≤100𝑔\n• 𝐻!: 𝜇> 100𝑔\n• How does the 𝑝-value compare between\none and two-sided tests?\nNull hypothesis is\nalways the logical\n“opposite\"\n• Any given datapoint has half the\np-value in a one-sided test than it\ndoes in a two-sided test\n• We also do not divide 𝛼by 2 for\na one-sided test, because all the\narea is now in one tail"
+        },
+        {
+            "slide_number": 27,
+            "title": "simple extensions",
+            "content": "• What do we do in a two-sample test when one of the samples violates the\nnormal approximation assumptions?\n• Use a two-sample t-test\n• Can we build a confidence interval around a mean when the normal\napproximation is violated?\n• Yes, as discussed, just use the 𝑡-statistic in place of the 𝑧-score\n• What if we are only interested in a confidence interval on one side (e.g., a\nlower bound or an upper bound)?\n• Can use a one-sided interval, where one of the bounds is replaced by\n−∞or +∞\n• When computing 𝑧# or 𝑡#, instead of 1 −(1 −𝑐)/2 (where dividing by\n2), use 1 −(1 −𝑐) = 𝑐since there is only one tail\n𝑐\n𝑧!"
+        }
+    ]
+}

@@ -1,0 +1,118 @@
+{
+    "document_type": "lecture_slides",
+    "course": "ECE 20875",
+    "lecture_title": "Intro",
+    "source_file": "Intro.pdf",
+    "slides": [
+        {
+            "slide_number": 1,
+            "title": "ECE 20875",
+            "content": "Python for Data Science\nQiang Qiu, Murat Kocaoglu, and Anuran Makur\n(Adapted from material developed by Profs. Milind Kulkarni, Stanley Chan,\nChris Brinton, David Inouye, and Qiang Qiu)\nSection 001 : ARMS B06 (Kocaoglu)\nSection 002 : WALC 3087 (Qiu)\nSection 004 : WALC 2087 (Makur)"
+        },
+        {
+            "slide_number": 2,
+            "title": "what is data?",
+            "content": ""
+        },
+        {
+            "slide_number": 3,
+            "title": "lots of different definitions",
+            "content": "3"
+        },
+        {
+            "slide_number": 4,
+            "title": "humans have used data forever",
+            "content": "4\nThe oldest known mathematical artifacts\n(tally stick or lunar calendar?)"
+        },
+        {
+            "slide_number": 5,
+            "title": "why do we use data?",
+            "content": "5\n• Analyzing data helps us make decisions\nand take actions"
+        },
+        {
+            "slide_number": 6,
+            "title": "what has changed?",
+            "content": "6\n• Google processes 3.5 billion search queries per day.\n• Instagram users post 54,000 photos each minute.\n• Twitter user post 3,000 tweets every second.\n• There’s a lot more data\n• Machines can also collect (and in turn\nuse) it\n• And we’re trying to do more with it"
+        },
+        {
+            "slide_number": 7,
+            "title": "a parable of Purdue professors",
+            "content": "7\nProf. Chris Brinton (ECE) develops\nalgorithms for optimizing social and\ncommunication networks from data\nProf. Qiang Qiu (ECE)\nstudies computer vision\nand machine learning\nProf. Mahsa Ghasemi (ECE)\nstudies efficient and reliable\nuse of data in sequential\ndecision-making problems\nProf. Philip E. Paré (ECE)\ndevelops models and algorithms\nfor predicting and mitigating viral\nspread in networks using data\nJennifer Neville (CS) builds\nnew machine learning tools\nto study graphs and networks\nProf. Milind Kulkarni (ECE) builds\nsystems to make data analyses run faster\nAre they doing data\nscience?\nProf. Murat Kocaoglu (ECE)\ndevelops algorithms for\nlearning causal structures\nto derive actionable\ninsights from data."
+        },
+        {
+            "slide_number": 8,
+            "title": "what is data science?",
+            "content": "8\nYes!\n• Collecting data from a wide variety of sources and putting\nthem into a consistent format?\n• Making observations about patterns in data?\n• Visualizing trends in data?\n• Identifying similarities between data points?\n• Making predictions about what will happen in the future?\n• Prescribing courses of action to take based on forecasts?\n• Developing new machine learning and data mining\nalgorithms?\n• Accelerating analysis algorithms?"
+        },
+        {
+            "slide_number": 9,
+            "title": "data science is a lot of things",
+            "content": "9\nvisualizing data\ncollecting/organizing data\nanalyzing data\nmaking predictions\nfrom data\nidentifying patterns in data\ninterpreting data\nbuilding systems\nfor data analysis\ndealing with\nprivacy concerns\nethics\nwriting data analyses"
+        },
+        {
+            "slide_number": 10,
+            "title": "data science is a lot of things",
+            "content": "10\nvisualizing data\ncollecting/organizing data\nanalyzing data\nidentifying patterns in data\ninterpreting data\nbuilding systems\nfor data analysis\nethics\nwriting data analyses\ndealing with\nprivacy concerns\nmaking predictions\nfrom data"
+        },
+        {
+            "slide_number": 11,
+            "title": "what industries has it impacted?",
+            "content": "11\n• Hard to think of one that is not being impacted\nby data science!\n• Medicine: Analytics from wearable trackers,\nstudying disease patterns, …\n• Retail: Analyzing consumer behavior, predicting\ncustomer satisfaction, …\n• Transportation: Assisted/autonomous navigation,\npredicting equipment failures, …\n• Education: Tracking student engagement,\npersonalizing learning content, …"
+        },
+        {
+            "slide_number": 12,
+            "title": "what about Python?",
+            "content": "12\n•\nGeneral purpose programming language,\nfirst appeared in the 90s\n•\nEasily recognized by use of whitespace\nindentation rather than { } brackets to\nenhance readability\n•\nBecoming the industry standard for data\nscience (displacing R?)\n•\nMany useful, open-source libraries: numpy,\npandas, matplotlib, pytorch\n•\nAnd standard control functions (e.g., loops)\nfrom lower-level languages to help\nstructure programs"
+        },
+        {
+            "slide_number": 13,
+            "title": "what about Python?",
+            "content": ""
+        },
+        {
+            "slide_number": 14,
+            "title": "landscape",
+            "content": "14\n•\nThis is an introductory programming and\nstatistics course that emphasizes data\nscience problems with some math\n•\nOther data science courses in ECE, e.g.,\n•\nECE 30010 - Introduction to Machine\nLearning and Pattern Recognition\n•\nECE 47300 - Introduction to Artificial\nIntelligence\n•\nECE 57000 - Artificial Intelligence\n•\nECE 59500 - Machine Learning I\n•\nBut data science is a Purdue-wide initiative!"
+        },
+        {
+            "slide_number": 15,
+            "title": "syllabus break!",
+            "content": "15"
+        },
+        {
+            "slide_number": 16,
+            "title": "some data analysis examples",
+            "content": "16"
+        },
+        {
+            "slide_number": 17,
+            "title": "data analysis in “practice”",
+            "content": "17\nName\nHigh school GPA\nSAT Math\nSAT R/W\nResidence\nJane Doe\n4.7\n760\n700\nIndiana\nPurdue Pete\n3.5\n680\n620\nIndiana\nB. O. Iler\n3.0\n800\n650\nMichigan\nEngy Neer\n4.2\n750\n590\nNorth Carolina\nMark Faller\n3.8\n780\n550\nNew Jersey\n…\n…\n…\n…\n…\n• Let’s say we have a data set of applicants to Purdue\n• What might we want to learn about them?"
+        },
+        {
+            "slide_number": 18,
+            "title": "descriptive statistics",
+            "content": "18\n0\n10\n20\n30\n40\n50\n2.5–3.0\n3.0–3.5\n3.5–4.0\n4.0+\n• Which students come from which states?\n• What is the distribution of GPAs? SAT scores?\n• GPAs may need to be normalized to a\nconsistent range across all schools\n• Can build histograms, e.g., for the GPAs\n• But how do we know how big to make the\nbuckets?"
+        },
+        {
+            "slide_number": 19,
+            "title": "reasoning about data",
+            "content": "19\n• How do Purdue applicants compare to the national average?\n• Mean GPA of applicants: 3.6\n• Is this high or low?\n• Can sample GPA of all high school students\n• Suppose we collect 1000 GPAs and find a mean of 3.4\n• Does this mean Purdue students have a higher GPA on average?\n• Need more information! In particular …\n• Was the sampling method we used unbiased?\n• What is the variance of the sample collected (i.e., the spread of GPAs)?\n• What confidence interval can be built for the population mean (i.e., what is the likely range of the\ntrue mean GPA)?"
+        },
+        {
+            "slide_number": 20,
+            "title": "making predictions",
+            "content": "20\n•\nCan we predict how successful a particular applicant\nmight be at Purdue?\n•\nHow do we define success? GPA?\n•\nIdea: Look at the application statistics of the current\nseniors and see if there is a relationship between these\nstatistics and their current GPA\n•\nOne way to find a relationship is using linear regression\n•\nMight tell you something like: “a Purdue student’s\nGPA can be predicted mostly by their high school\nGPA, with their SAT score having a lighter influence”\n•\nMany other prediction algorithms exist too"
+        },
+        {
+            "slide_number": 21,
+            "title": "classification",
+            "content": "21\n• Can we make admissions decisions quicker through\nautomation?\n• Idea: Compare each applicant’s statistics to past applicants\nthat were admitted, and to those that were rejected\n• Train a classifier to analyze these past applicants and\nmaximize the ability to predict whether a student would be\naccepted or not\n• For example, a k-nearest neighbor classifier would assess\nwhether a given applicant is more similar to the pool of\nadmitted applicants or to the rejected applicants\n• Why might we run into trouble here?"
+        },
+        {
+            "slide_number": 22,
+            "title": "clustering",
+            "content": "22\n• What if we want to identify groups of students\nbeyond “admitted” vs. “rejected”?\n• Idea: See if students cluster together according\nto some measure of distance\n• Some students look more like “nearby”\nstudents than students that are “far away”\n• Important question: What features of students\nshould be considered for the clustering?\n• E.g., maybe don’t consider something like hair\ncolor!\n• With k-means clustering, k groups of students\nwould be extracted based on “closeness”"
+        }
+    ]
+}

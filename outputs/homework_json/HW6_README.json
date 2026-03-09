@@ -1,0 +1,45 @@
+{
+    "class": "ECE 20875",
+    "homework_number": 6,
+    "sections": {
+        "homework 6: regular expressions": {
+            "content": "Due: 03.12.2021 at 11:59 pm ET\n\n\n\nThis length of this homework is inversely proportional to your knowledge in writing regular expressions, both for finding matches and for doing substitutions.\n\n\n\n",
+            "subsections": {
+                "background": {
+                    "content": "\n\nPlease refresh your memory of regular expressions using the [class notes](https://www.davidinouye.com/course/ece20875-spring-2021/lectures/regexes.pdf). You may also find the Python [documentation on regular expressions](https://docs.python.org/3.6/library/re.html) useful.\n\n\n\nA few helpful reminders: \n\n\n\n",
+                    "subsections": {
+                        "testing for patterns": {
+                            "content": "\n\nWhen you use `re.search` to find a regular expression match, it returns a `Match` object if the pattern exists in the string (we will see more about objects later in the semester). If *there is no match*, then `re.search` (and `re.match`, `re.findall` and `re.findall`) will return `None`,  which you can test for:\n\n\n\n```\n\np = re.compile('pattern')\n\nif (p.search(s)) :\n\n   # This branch will execute if the pattern is found\n\nelse :\n\n   # this branch will execute if the pattern is *not* found\n\n```\n\n\n\n"
+                        },
+                        "substituting with functions": {
+                            "content": "\n\nA \"normal\" use of `re.sub` is to substitute one string for another (remember that you can use the *groups* that you match in a pattern as part of your string substitution):\n\n\n\n```\n\np = re.compile('l(o+)l')\n\np.sub('o', s) #replace \"loooool\" with \"lol\"\n\n```\n\n\n\nYou can also call a method instead of providing a replacement string. This method will be called with the `Match` object corresponding to the matched string, and should return a string:\n\n\n\n```\n\ndef replFun(m) :\n\n   return 'l' + m.group(1).upper() + 'l'\n\n   \n\np = re.compile('l(o+)l')\n\np.sub('o', s) #replace \"loooool\" with \"lOOOOOl\"\n\n```\n\n\n\n"
+                        }
+                    }
+                }
+            }
+        },
+        "instructions": {
+            "content": "\n\n",
+            "subsections": {
+                "0) set up your repository": {
+                    "content": "\n\nClick the link on Piazza to set up your repository for HW 6, then clone it.\n\n\n\nThe repository should contain two files:\n\n\n\n1. `problems.py`, the file in which you will fill in the functions for the problems. This also contains test code you can use to test your solutions.\n\n2. This README.\n\n\n\n"
+                },
+                "problem 1: regular expression matches": {
+                    "content": "\n\nFill in the function `problem1`. This function should return `True` if the input string *is a valid phone number* and `False` if not. We define a valid phone number as follows:\n\n\n\nFirst, it contains an *optional* area code (3 digits) followed by 7 digits.\n\n\n\nSecond, there could be one of several possible formats for the phone number, where the `X`s are digits:\n\n\n\n```\n\n(XXX) XXX-XXXX\n\nXXX-XXX-XXXX\n\nXXX-XXXX\n\n```\n\n\n\n*ANY other format should not count as a valid phone number. Spaces before or after an otherwise number is considered invalid.*\n\n\n\nRemember that `(`, `)`, `-` and `.` are special characters for regular expressions. To search for those characters, you need to precede them with a backslash: `\\(` `\\)`, `\\-`, `\\.`.\n\n\n\nBecause we are looking for the entire string to be a phone number, you can either use `^` and `$` to force a match to be at the beginning and end of a string, or you can use `fullmatch` instead of `match` or `search`.\n\n\n\n"
+                },
+                "problem 2: groups": {
+                    "content": "\n\nConsider a regular expression that identifies street addresses, with the format:\n\n\n\n1. One or more digits, followed by a space.\n\n2. One or more words, each starting with a capital letter and then followed by zero or more lowercase letters. This will be followed by a space.\n\n3. A road type, one of \"Rd.\", \"Dr.\", \"Ave.\" or \"St.\"\n\n\n\nSo the following are valid street names:\n\n\n\n`465 Northwestern Ave.`\n\n\n\n`201 South First St.`\n\n\n\nAssume that we will only test with valid street names. There will only be 'one valid street name' in a test case. However, there may be other words preceeding or following the valid street name.\n\n\n\n*We consider street names to be valid if they satify the above mentioned rubric in problem 2. Hint: Grading test case alert.*\n\n\n\nFill in the function `problem2`. This function should search an input string for any valid street address, then return *just the street name* from that address: not the street number, and not the road type. So if you pass in:\n\n\n\n`The EE building is at 465 Northwestern Ave.`\n\n\n\nyou should return:\n\n\n\n`Northwestern`\n\n\n\nIf you pass in:\n\n\n\n`Meet me at 201 South First St. at noon`\n\n\n\nyou should return:\n\n\n\n`South First`\n\n\n\n\n\n**Be careful not to return extra spaces in the return value. You may need to do a little bit of extra processing of the string captured by your group to ensure this. You will receive partial credit for having spaces. Please remove extra spaces for full credit.**\n\n\n\n"
+                },
+                "problem 3: substitution": {
+                    "content": "\n\nFill in the function `problem3`. This function should *garble* addresses by returning the original address but with the street name reversed. For the above two examples, you should return:\n\n\n\n`The EE building is at 465 nretsewhtroN Ave.`\n\n\n\n`Meet me at 201 tsriF htuoS St. at noon`\n\n\n\n(Note that the entire street name is reversed, not word by word).\n\n\n\nTwo hints:\n\n\n\n1. Think about creating three groups in your regular expression. One that captures the street number, one that captures the street name, and one that captures the road type. You can then use those three groups to assemble the appropriate \n\n2. If you have a string `s`, `s[::-1]` is the reversed string.\n\n\n\nYou should feel free to write helper functions to help solve this problem.\n\n\n\n"
+                }
+            }
+        },
+        "what to submit": {
+            "content": "\n\nPlease submit `problems.py` with all the functions filled in.\n\n\n\n"
+        },
+        "submitting your code": {
+            "content": "\n\nPlease add, commit and push the latest version of your code, as you did in the previous HW.\n\nDo not make any modifications to this post submission and prevent the late penalty.\n\n"
+        }
+    }
+}

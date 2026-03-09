@@ -1,0 +1,38 @@
+{
+    "document_type": "lecture_slides",
+    "course": "ECE 20875",
+    "lecture_title": "higher-order-functions",
+    "source_file": "higher-order-functions.pdf",
+    "slides": [
+        {
+            "slide_number": 1,
+            "title": "ECE 20875",
+            "content": "Python for Data Science\nhigher order functions:\nfilters, map/reduce, list\ncomprehensions\nQiang Qiu, Murat Kocaoglu, and Anuran Makur\n(Adapted from material developed by Profs. Milind Kulkarni,\nStanley Chan, Chris Brinton, David Inouye, and Qiang Qiu)"
+        },
+        {
+            "slide_number": 2,
+            "title": "• Since functions are treated as first-",
+            "content": "class objects in Python, they can\n• Take one or more functions as\narguments\nhigher order functions\n• Return one or more functions"
+        },
+        {
+            "slide_number": 3,
+            "title": "• Remove undesired results from a list",
+            "content": "• Needs two inputs:\n• (boolean) function to be carried out\n• Iterable (list) to be filtered\nli\n, ,\n,\n,\n,\n,\n,\n,\n,\nfinal_list\n(\n(\nx: (x\n!\n)\n, li))\n(final_list)\nfilter\nlambda arguments: expression"
+        },
+        {
+            "slide_number": 4,
+            "title": "• Applies a function to all items in an",
+            "content": "input list (i.e., defines a mapping)\n• Needs two inputs:\n• Function to apply\n• Iterable: A sequence, collection, or\niterator object\nitems\n[ , , , , ]\nsquared\n(\n(\nx: x\n,\nitems))\nmap"
+        },
+        {
+            "slide_number": 5,
+            "title": "• Perform computation on a list and",
+            "content": "return the (single value) result\n• Rolling computation applied to\nsequential pairs of values\n• Needs two inputs:\n• Function to apply\n• Sequence to iterate over\nreduce\n• Operator functions can also be\nused"
+        },
+        {
+            "slide_number": 6,
+            "title": "• Simple way of creating a list based on an",
+            "content": "iterable Python object\n• Elements in the new list are conditionally\nincluded and transformed as needed\n[output expression for item in iterable\nif condition]\nAn example:\n• Compared with a for loop\n• More computationally efficient\n• But less flexible!\nlist comprehensions\n(often better than using map/filter directly)\n• Can also have an if-else clause on the output\nexpression\n[output\nexpression\nif-else\nclause\nfor\nitem\nin iterable condition(s) on iterable]\n• Can use line breaks between brackets for\nreadability\n• Can also be nested"
+        }
+    ]
+}

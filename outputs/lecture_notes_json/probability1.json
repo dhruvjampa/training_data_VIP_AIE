@@ -1,0 +1,133 @@
+{
+    "document_type": "lecture_slides",
+    "course": "ECE 20875",
+    "lecture_title": "probability1",
+    "source_file": "probability1.pdf",
+    "slides": [
+        {
+            "slide_number": 1,
+            "title": "ECE 20875",
+            "content": "Python for Data Science\nProbability and\nRandom Variables\nQiang Qiu, Murat Kocaoglu, and Anuran Makur\n(Adapted from material developed by Profs. Milind Kulkarni,\nStanley Chan, Chris Brinton, David Inouye, and Qiang Qiu)"
+        },
+        {
+            "slide_number": 2,
+            "title": "what is a probability?",
+            "content": "• Measure of likelihood that an event occurs\n• A number between 0 and 1\n• The higher the number, the more likely the event\noccurs\n• A probability of 0 means the event never occurs,\nand a probability of 1 means the event always\noccurs\n• Example: What is the probability of the event\n“heads” when flipping a coin?\nP(H) ="
+        },
+        {
+            "slide_number": 3,
+            "title": "elements of a probability model",
+            "content": "Ω = {1, . . . , 5}\n𝑃(3) = 3/8\n𝑃({1,3,5}) = 5/8\n• Conduct an experiment, which results in an outcome\n• Each outcome has a probability between 0 and 1\n• Set of all possible outcomes is the sample space\n• Sum of probability of all outcomes is 1\n• An event is a set of possible outcomes\n• Probability of event is the sum of the probabilities of\nindividual outcomes"
+        },
+        {
+            "slide_number": 4,
+            "title": "visualization",
+            "content": ""
+        },
+        {
+            "slide_number": 5,
+            "title": "what does probability mean?",
+            "content": "• Lots of different interpretations\n• All outcomes are equally probable (e.g., roll a die, each\nnumber has the same chance).\n• Probability of an event is number of outcomes in event\ndivided by total number of outcomes.\n• Frequentist: Repeat an experiment over and over again,\nprobability of an event is fraction of the time the event\nhappens during the experiment.\n• Bayesian: Probability is a reflection of your belief about the\nlikelihood of something happening (e.g., based on prior\nknowledge)."
+        },
+        {
+            "slide_number": 6,
+            "title": "random variables",
+            "content": "• A random variable is a function that assigns an outcome to a number\n• A way of letting us treat outcomes, which may not be numbers, in a\nmathematical way\n• E.g., in flipping a coin, we could map Heads to 0 and Tails to 1\n• A random variable has a probability distribution which tells us the probability of\nits values\n• E.g., in flipping a coin, 𝑃[𝑋= 0] = 0.5, 𝑃[𝑋= 1] = 0.5\n• Informal intuition: The random variable is the horizontal value on the histogram,\nwith the height being the probability\n• Random variables can be continuous or discrete"
+        },
+        {
+            "slide_number": 7,
+            "title": "from histogram to probability",
+            "content": ""
+        },
+        {
+            "slide_number": 8,
+            "title": "probability density function",
+            "content": "• One loose definition: A histogram when …\n• (i) the number of samples goes to infinity\n• (ii) the bin width approaches zero\n• When this happens, the estimate ̂𝑝! approaches 𝑝! of the\npopulation\n• More formal definition: 𝑓\" 𝑥is the probability density\nfunction (PDF) for 𝑋if\n𝑃𝑎≤𝑋≤𝑏= .\n!\n\"\n𝑓# 𝑥𝑑𝑥\n• 𝑋is a continuous random variable"
+        },
+        {
+            "slide_number": 9,
+            "title": "cumulative distribution function",
+            "content": "• The cumulative distribution function (CDF) of a random variable 𝑋is\n𝐹!(𝑥) = 𝑃[𝑋≤𝑥]\n-1 2 50 0\n0\n1 25 0\n2 50 0\n3 75 0\n5 0 0\n-5 -4.4 -3.8 -3.2 -2.6 -2 -1.4 -0.8 -0.2 0.4\n1\n1.6 2.2 2.8 3.4\n4\n4.6\nPDF\n0\n0.25\n0.5\n0.75\n1\n1.25\n-5 -4.5 -4 -3.5 -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5\nCDF\n𝐹!(𝑥)\n𝑥\n𝑥\n𝑓!(𝑥)"
+        },
+        {
+            "slide_number": 10,
+            "title": "probability mass/density function",
+            "content": "• If 𝑋is a discrete random variable, it has a probability\nmass function (PMF). The PMF is defined directly from\nthe probabilities of events (essentially a histogram with\nbars interpreted as frequencies):\n𝑓#(𝑥) = 𝑃[𝑋= 𝑥]\n• If 𝑋is a continuous random variable, it has a PDF,\nwhich is a little tricker to define since the probability of\nany single number is actually 0. As a result, we typically\ndefine the PDF in terms of the CDF:\n𝑓#(𝑥) =\n$%!(')\n$'\n𝑓!(𝑥)"
+        },
+        {
+            "slide_number": 11,
+            "title": "CDF from PDF/data",
+            "content": ""
+        },
+        {
+            "slide_number": 12,
+            "title": "picking a distribution",
+            "content": "• Common problem in data science\n• You have (empirical) data, and you need to\nchoose how to (analytically) model it\n• What distribution is your data coming from?\n• What distribution is most likely to predict\nfuture samples?\n• Important choice because distribution often\ndetermines how your model works"
+        },
+        {
+            "slide_number": 13,
+            "title": "qq plots",
+            "content": ""
+        },
+        {
+            "slide_number": 14,
+            "title": "qq plots",
+            "content": "• See scipy.stats.probplot"
+        },
+        {
+            "slide_number": 15,
+            "title": "bernoulli distribution",
+            "content": "𝑓!(𝑥)"
+        },
+        {
+            "slide_number": 16,
+            "title": "binomial distribution",
+            "content": "• Bernoulli trials repeated 𝑛times\n• Think flipping a coin 𝑛times and counting\nthe number of heads, or transmitting 𝑛\nbits and counting the number of 1’s\n• PMF:\n𝑃[𝑋= 𝑥] =\n!\n\" 𝑝\"(1 −𝑝)!#\"\n• Here, !\n\" =\n!!\n\"!(!#\")! is the binomial\ncoefficient\n𝑥\n𝑓#(𝑥)"
+        },
+        {
+            "slide_number": 17,
+            "title": "example",
+            "content": "We are interested in modeling whether a machine produces outputs in\nspec or not. We collect 200 samples and find 20 are out of spec. Model\nthe next output as a random variable. What is its density function?"
+        },
+        {
+            "slide_number": 18,
+            "title": "example",
+            "content": ""
+        },
+        {
+            "slide_number": 19,
+            "title": "gaussian distribution",
+            "content": "• Also called the normal distribution, or the bell\ncurve\n• Very common distribution in natural processes\n• The sum of many independent processes is\noften normal (more on this later)\n• PDF:\n𝒩(𝑥|𝜇, 𝜎$) =\n%\n$&'! 𝑒((#$%)!\n!'!\n• Its parameters are the mean 𝜇and the\nvariance 𝜎'\n𝒩(𝑥|𝜇, 𝜎!)"
+        },
+        {
+            "slide_number": 20,
+            "title": "gaussian distribution",
+            "content": "•\nThe PDF of the normal distribution has\nseveral useful properties\n•\nThe 3-sigma rule\n•\n~68% of points within ±𝜎of 𝜇\n•\n~95% of points within ±2𝜎of 𝜇\n•\n~99.7% of points within ±3𝜎of 𝜇\n•\nUseful in constructing confidence intervals\nand hypothesis testing (more on this later)"
+        },
+        {
+            "slide_number": 21,
+            "title": "example",
+            "content": "We are told that the time between visits to a website, measured in\nminutes, is exponentially distributed with a rate parameter 𝜆= 2. Find\nthe CDF of this random variable. What is the probability that that there\nis more than 0.5 minutes between visits?"
+        },
+        {
+            "slide_number": 22,
+            "title": "exponential distribution",
+            "content": ""
+        },
+        {
+            "slide_number": 23,
+            "title": "continuous example",
+            "content": "• We are told that the time between visits to a website, measured in\nminutes, is exponentially distributed with a rate parameter λ = 2.\n• 1) Find the CDF of this random variable.\n• 2) What is the probability that that there is more than 0.5 minutes between\nvisits?"
+        },
+        {
+            "slide_number": 24,
+            "title": "continuous example",
+            "content": ""
+        },
+        {
+            "slide_number": 25,
+            "title": "many more!",
+            "content": "• Geometric: “How many times do I need to flip a coin to get heads?”\n• Uniform: Every event in an interval is equally likely\n• Student’s t: Behavior of normal distribution with fewer samples\n• Poisson: Discrete version of the exponential distribution\n• …\n• See more here: https://docs.scipy.org/doc/numpy-\n1.14.1/reference/routines.random.html"
+        }
+    ]
+}

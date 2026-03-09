@@ -1,0 +1,108 @@
+{
+    "document_type": "lecture_slides",
+    "course": "ECE 20875",
+    "lecture_title": "histograms",
+    "source_file": "histograms.pdf",
+    "slides": [
+        {
+            "slide_number": 1,
+            "title": "ECE 20875",
+            "content": "Python for Data Science\nHistograms\nQiang Qiu, Murat Kocaoglu, and Anuran Makur\n(Adapted from material developed by Profs. Milind Kulkarni,\nStanley Chan, Chris Brinton, David Inouye, and Qiang Qiu)"
+        },
+        {
+            "slide_number": 2,
+            "title": "• You’re managing a coffee shop",
+            "content": "• Assuming you want to maximize profit, how\nmuch coffee should you buy for each day?\n• Too much →Surplus, waste money :(\n• Too little →Unsatisfied demand, under-\ncaffeinated customers :(\n• What should you do?\na problem"
+        },
+        {
+            "slide_number": 3,
+            "title": "• Count how many people get coffee in a day",
+            "content": "• Day 1: 37 people\n• Likely different each day of the week, and\nthe type of coffee (cold brew, late, etc.)\nalso has an impact\n• Assume such factors do not matter\n(problem is still interesting!)\n• Should we just get enough coffee for 37\npeople?\ncollect data"
+        },
+        {
+            "slide_number": 4,
+            "title": "• Day 2: 43",
+            "content": "• Day 3: 48\n• Day 4: 41\n• Day 5: 46\n• Day 6: 19 (!)\n• Day 7: 38\n• …\n(keep) collect(ing) data"
+        },
+        {
+            "slide_number": 5,
+            "title": "[37, 43, 48, 41, 46, 19, 28, 35, 34, 38,",
+            "content": "31, 32, 32, 23, 23, 33, 35, 39, 34, 28,\n39, 28, 29, 38, 28, 30, 25, 35, 39, 35,\n31, 28, 25, 26, 15, 31, 28, 32, 40, 21,\n34, 38, 30, 47, 34, 31, 51, 30, 41, 36,\n33, 51, 22, 25, 29, 50, 32, 39, 25, 37,\n54, 33, 36, 25, 30, 22, 41, 35, 31, 40,\n30, 33, 27, 36, 27, 34, 24, 41, 37, 29,\n48, 40, 31, 32, 33, 32, 40, 31, 32, 40,\n31, 33, 32, 38, 37, 41, 37, 39, 38, 42]\n100 days later …"
+        },
+        {
+            "slide_number": 6,
+            "title": "• Staring at a list of numbers is not",
+            "content": "very illuminating\n• Visualizing the data in a useful way\ncan help reveal patterns\n• Data visualization is an\nimportant subset of data science\n• Since the data consists of a single,\nnumeric variable, we can try a\nhistogram\nvisualize the data"
+        },
+        {
+            "slide_number": 7,
+            "title": "• A histogram visualizes observations of",
+            "content": "a random variable 𝑑\n• Each bar in a histogram is a bin\n𝑥!, 𝑥\", . . .\n• Each observation is placed into one\nbin\n𝑥!: 15 ≤𝑑< 20, 𝑥\": 20 ≤𝑑\n< 25, . . .\n• The count (size/height) of each bin is\nthe number of observations in that bin\n𝑥!: 2, 𝑥\": 6, . . .\nbuilding a histogram\nimport matplotlib.pyplot as plt\n_ = plt.hist(data, bins=8, range=(15,55))\nplt.xlabel('# of coffee drinkers')\nplt.ylabel(‘frequency')\nplt.show()"
+        },
+        {
+            "slide_number": 8,
+            "title": "• The empirical (measured) frequency of each",
+            "content": "bin is the fraction of data in that bin\n• Often, count is also referred to as frequency\n• The y-axis numbers telling us what exactly is\nplotted\n• (More details on later slides)\nbuilding a histogram\n_ = plt.hist(data, bins=8, range=(15,55))\nplt.xlabel('# of coffee drinkers')\nplt.ylabel('frequency')\n!𝑝! = 𝑥! / ∑\n\"\n𝑥\" = 0.02, !𝑝# = 𝑥# / ∑\n\"\n𝑥\" = 0.06, . . .\n∑\n\"\n̂𝑝\" = 1\nNote that"
+        },
+        {
+            "slide_number": 9,
+            "title": "• Remember: This histogram comes",
+            "content": "from observed data\n• If we repeat the experiment, we\nmight not get the same histogram!\n• In fact, there will almost surely be\nsome difference at this sample size\n• This is because what we have is a\nsample of the true distribution\nrepeating the experiment\n_ = plt.hist(data, bins=8, range=(15,55))\nplt.xlabel('# of coffee drinkers')\nplt.ylabel('frequency')"
+        },
+        {
+            "slide_number": 10,
+            "title": "• Suppose we collect 1000 observations instead of",
+            "content": "100\n• The result on the right looks basically the same!\n• Using the same number of bins\n• Each bin has more observations in it\n• But the relative frequencies are not changing\nmuch\n• But now that we have a larger sample, we can\nadd more bins to see a finer granularity of the\ndistribution\ncollecting a larger sample\n_ = plt.hist(data, bins=8, range=(15,55))\nplt.xlabel('# of coffee drinkers')\nplt.ylabel('frequency')"
+        },
+        {
+            "slide_number": 11,
+            "title": "• This looks better!",
+            "content": "• Gives us a good sense of what the\ndata looks like, and what the\nunderlying distribution is\n• What would happen if we used\nmore than 40 bins here?\nadding more bins\n_ = plt.hist(data, bins=40, range=(15,55))\nplt.xlabel('# of coffee drinkers')\nplt.ylabel('frequency')"
+        },
+        {
+            "slide_number": 12,
+            "title": "• This looks even better!",
+            "content": "• As we add more data points,\nour histogram looks more and\nmore like the “true” shape of\nthe underlying distribution\n• We’ll get in to what this\nmeans when we talk about\ndistributions and sampling\nadding even more data\n_ = plt.hist(data, bins=40, range=(15,55))\nplt.xlabel('# of coffee drinkers')\nplt.ylabel('frequency')"
+        },
+        {
+            "slide_number": 13,
+            "title": "histogram bin normalization",
+            "content": "_ = plt.hist(data, bins=8,\nrange=(15,55), density=‘True’)\n• Count - y-axis is the count in each bin, denoted 𝑥!\n•\n∑\n!\"#\n$\n𝑥! = 𝑚, sum of all bins is total number of samples 𝑚\n• Probability - y-axis is probability for each bin, denoted\n̂𝑝! =\n%!\n∑\" %\"\n• ∑\n!\n̂𝑝! = 1, sum of all bin probabilities is 1\n• Density - y-axis is normalized by both probability and bin\nwidth, (𝑑! =\n'(!\n)\n• So ∑\n!\n𝑤+ (𝑑! = 1, i.e., the area under the curve is 1\n• “Frequency” can be used for both “count” and “probability”\nabove"
+        },
+        {
+            "slide_number": 14,
+            "title": "• The histogram has a few parameters",
+            "content": "• Number of bins 𝑛, width of bins 𝑤, and even\nnumber of samples 𝑚can be viewed as one\n• Bins don’t even have to be homogeneous\n• Several formulas have been proposed for choosing 𝑛\nand 𝑤based on the sample\n• Square root: 𝑛= ⌈𝑚⌉\n• Sturges’ formula: 𝑛= ⌈log#𝑚⌉+ 1\n• Rice rule: 𝑛= ⌈2𝑚⁄\n! %⌉\n• Scott’s normal reference rule: 𝑤= 3.5!𝜎/𝑚⁄\n\" #\n• How do we reason about the “optimal” choice?\nchoice of bins"
+        },
+        {
+            "slide_number": 15,
+            "title": "• Choosing large bin size 𝑤",
+            "content": "• Broad range of points (some rare, some\ncommon) put into the same bin and given the\nsame estimate\n• Choosing small bin size 𝑤\n• Each bin is based on fewer samples, so harder\nto estimate how likely the bin is\n• In the limit: Buckets of size 0 (is it practical?)\n• So how do we choose the bin size in general?\nbin width intuition"
+        },
+        {
+            "slide_number": 16,
+            "title": "evaluation of histograms",
+            "content": "• We can choose many different bin widths 𝑤(or equivalently the\nnumber of bins 𝑛)\n• How do we evaluate which bin width 𝑤is better?\n• Visual appeal - Which is most visually appealing to humans?\n• Usefulness - Which helps the owner know how much coffee\nto make?\n• Mathematical metrics - Which satisfies some mathematical\nnotion of goodness? (Ideally this is tied to usefulness)\n• We will focus on mathematical metrics"
+        },
+        {
+            "slide_number": 17,
+            "title": "estimated vs. “true” model",
+            "content": "• First, we assume there is some “true” underlying model\n(often denoted by 𝑓(𝑥) ) for the phenomena of interest\n• Importantly, this “true” model is unknown (or hidden)\n• For example, we don’t know before collecting data the\ndistribution of coffee purchases\n• Even after collecting data, we can only estimate the\ndistribution\n• Histograms are an estimate (or approximation, often\ndenoted by %𝑓(𝑥) ) of the true distribution"
+        },
+        {
+            "slide_number": 18,
+            "title": "• We can pick the bin size 𝑤that minimizes the error",
+            "content": "of estimating a point\n• The Integrated Square Error (ISE) of a\nhistogram can be written as a function of the bin\nwidth (i.e., the smoothing parameter)\n𝐿(𝑤) = ∫\n'𝑓,(𝑥) −𝑓(𝑥)\n-𝑑𝑥\n• Here, %𝑓!(𝑥) is the density estimate of the histogram\nwith 𝑚samples\n• However, 𝑓(𝑥) is the “true” but unknown model, so\nhow do we compute 𝐿(𝑤)?\nminimizing the estimation error"
+        },
+        {
+            "slide_number": 19,
+            "title": "• The Integrated Square Error (ISE):",
+            "content": "𝐿(𝑤) = ∫\n\"𝑓!(𝑥) −𝑓(𝑥)\n\"\n𝑑𝑥\n• We can approximate* with data samples by 𝐿(𝑤)\n≈𝐽(𝑤) + 𝑐𝑜𝑛𝑠𝑡𝑎𝑛𝑡, where\n𝐽(𝑤) =\n2\n(𝑚−1)𝑤−\n𝑚+ 1\n(𝑚−1)𝑤($𝑝#\n\" + $𝑝\"\n\" + ⋯+ $𝑝$\")\n• 𝑤is bin width, 𝑚is the number of samples and $𝑝\", 𝑘\n= 1, . . . , 𝑛are the bin probabilities\n• We can choose the “optimal” bin width by minimizing\n𝐽(𝑤), which approximates 𝐿(𝑤)!\nestimating the error with samples\n* Stone CJ. An asymptotically optimal window selection rule for kernel density estimates. The Annals of Statistics. 1984 Dec 1:1285-97."
+        },
+        {
+            "slide_number": 20,
+            "title": "• The brute-force way is to try as many values of",
+            "content": "𝑤as possible and choose the best\n• Better to work with 𝑛here in this case, since\nthere is a finite number of possibilities\n• For each 𝑛= 1, . . . , 𝑚:\n• calculate 𝑤\n• use this to calculate 𝐽\nPlot the results, choose the best one\n• To narrow down the number of values we need\nto try, grid search procedures are also\npossible\nminimizing 𝐽(𝑤)\nTesting all numbers of bins\n𝑛\n𝐽(𝑛)"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "class": "ECE 20875",
+    "homework_number": 10,
+    "sections": {
+        "goals": {
+            "content": "\n\nIn this assignment you will:\n\n* Get familiar with using objects and classes by defining some methods and using objects to perform a computation\n\n* Implement k-means\n\n\n\n"
+        },
+        "background": {
+            "content": "\n\n",
+            "subsections": {
+                "classes and objects": {
+                    "content": "\n\nPlease see the [class notes on classes and objects.](http://www.cbrinton.net/ECE20875-2020-Spring/W11/objects.pdf)\n\n\n\n"
+                },
+                "k-means": {
+                    "content": "\n\nPlease see the class notes on [clustering and specifically k-means.](http://www.cbrinton.net/ECE20875-2020-Spring/W11/clustering.pdf)\n\n\n\n"
+                }
+            }
+        },
+        "instructions": {
+            "content": "\n\n",
+            "subsections": {
+                "0) set up your repository for this homework.": {
+                    "content": "\n\nUse the link on Piazza to set up Homework 10.\n\n\n\nThe repository should contain the following files:\n\n\n\n1. This README.\n\n2. `cluster.py` which contains the definition of the `Cluster` class and some testing code.\n\n3. `point.py` which contains the definition of the `Point` class and some testing code.\n\n4. `kmeans.py` which contains the skeleton of the kmeans algorithm and some testing code.\n\n\n\n"
+                },
+                "1) homework problem 1: complete point class": {
+                    "content": "\n\nComplete the missing portions of the `Point` class, defined in `point.py`:\n\n\n\n1. `distFrom`, which calculates the (Euclidean) distance between the current point and the target point. Be sure to account for the fact that a point may be in more than two dimensions (Euclidean distance generalizes: square the difference in each dimension and take the square root of the sum). It is okay to use `math.sqrt()` to calculate the square root.\n\n2. `makePointList`, which takes in a data p-by-k input matrix `data` and returns a list of p `Point` objects. Hint: Instantiate a point object for every row in the input, `data`.\n\n\n\nIf you test your code by running `python3 point.py`, you should get the following:\n\n\n\n```\n\n[Point: [0.5 2.5], Point: [0.3 4.5], Point: [-0.5  3. ], Point: [0.  1.2], Point: [10. -5.], Point: [11.  -4.5], Point: [ 8. -3.]]\n\n2.009975124224178\n\n```\n\n\n\n(Your floating point numbers may be a little off due to rounding)\n\n\n\n"
+                },
+                "2) homework problem 2: complete cluster class": {
+                    "content": "\n\nComplete the missing portions of the `Cluster` class, defined in `cluster.py`:\n\n\n\n1. `avgDistance`, which computes the average distance from the center of the cluster (stored in `self.center`) to all of the points currently in the cluster (stored in `self.points`). This can most easily be done by summing the distances between each point and the current center and then dividing the sum by the total number of points.\n\n2. `updateCenter`, which updates the center of the cluster (stored in `self.center`) to be the average position of all the points in the cluster. Note that if there are no points in the cluster, you should return without updating (i.e., if there are no points, just type the command `return`.\n\n\n\n> Note that we have defined `dim` and `coords` as properties that return information about the center of the cluster -- this means that if you pass a cluster into a method that is expecting a point, operations that access `dim` and `coords` will use the center of the cluster. Think about how that might be useful in conjunction with the `closest` method defined for `Point`.\n\n\n\nIf you test your code by running `python3 cluster.py`, you should get the following:\n\n\n\n```\n\nCluster: 0 points and center = [0.5, 3.5]\n\nCluster: 2 points and center = [0.5, 3.5]\n\n1.4976761962286425\n\nCluster: 2 points and center = [1.75, 2.75]\n\n0.3535533905932738\n\n```\n\n\n\n(Your floating point numbers may be a little off due to rounding)\n\n\n\n"
+                },
+                "3) homework problem 3: implement k-means": {
+                    "content": "\n\nUse the methods in `Point` and `Cluster` to implement the missing `kmeans` method in `kmeans.py`. The basic recommended procedure is outlined in `kmeans.py`.\n\n\n\nIf you test your code by running `python3 kmeans.py`, you should get the following:\n\n\n\n```\n\nCluster: 4 points and center = [0.075 2.8  ]\n\n   [0.3 4.5]\n\n   [0.  1.2]\n\n   [0.5 2.5]\n\n   [-0.5  3. ]\n\nCluster: 3 points and center = [ 9.66666667 -4.16666667]\n\n   [ 8. -3.]\n\n   [10. -5.]\n\n   [11.  -4.5]\n\n```\n\n\n\n(Your floating point numbers may be a little off due to rounding)\n\n\n\n"
+                }
+            }
+        },
+        "what you need to submit": {
+            "content": "\n\nPush your completed versions of `kmeans.py`, `cluster.py`, and `point.py`.\n\n"
+        }
+    }
+}
